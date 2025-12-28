@@ -1,0 +1,31 @@
+const router = require('express').Router();
+const sensorController = require('../controllers/sensor.controller');
+
+// Endpoint to change sensor status
+router.post('/sensor/change-status', async (req, res) => {
+    try {
+        const { deviceName, sensorType, value } = req.body;
+        await sensorController.changeSensorStatus(deviceName, sensorType, value);
+        res.status(200).json({ message: 'Sensor status changed successfully' });
+    } catch (error) {
+        console.error('Error changing sensor status:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+router.get('/sensor/get-latest/:deviceName/:sensorType', async (req, res) => {
+    try {
+        const { deviceName, sensorType } = req.params;
+        const sensorData = await sensorController.getLatestSensorData(deviceName, sensorType);
+        if (!sensorData) {
+            return res.status(404).json({ message: 'No data found for the specified device and sensor type' });
+        }
+        res.status(200).json(sensorData);
+    } catch (error) {
+        console.error('Error fetching latest sensor data:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+
+module.exports = router;

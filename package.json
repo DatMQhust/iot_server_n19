@@ -16,6 +16,7 @@
     "express": "^5.2.1",
     "mongoose": "^8.20.4",
     "mqtt": "^5.14.1",
+    "nodemailer": "^7.0.12",
     "socket.io": "^4.8.3"
   },
   "devDependencies": {
