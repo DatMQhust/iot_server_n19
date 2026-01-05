@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const sensorController = require('../controllers/sensor.controller');
+const deviceController = require('../controllers/device.controller');
 
 // Endpoint to change sensor status
 router.post('/sensor/change-status', async (req, res) => {
@@ -28,7 +29,7 @@ router.get('/sensor/get-latest/:deviceName', async (req, res) => {
 });
 router.get('/all-devices', async (req, res) => {
     try {
-        const devices = await sensorController.getAllDevices();
+        const devices = await deviceController.getAllDevices();
         res.status(200).json(devices);
     } catch (error) {
         console.error('Error fetching all devices:', error);
