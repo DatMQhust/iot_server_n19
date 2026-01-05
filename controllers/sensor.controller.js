@@ -32,12 +32,9 @@ const changeSensorStatus = async (deviceName, sensorType, value) => {
     
     // Publish to MQTT
     const mqttClient = getMQTTClient();
-    const topic = `btl_iot_n19/${deviceName}/action`;
-    const payload = JSON.stringify({
-        device: deviceName,
-        value: value,
-        timestamp: new Date().toISOString()
-    });
+    const topic = `topic/btl_iot_n19/${deviceName}/action`; 
+    const payload = String(value); 
+
     mqttClient.publish(topic, payload);
     
     // Emit to frontend via socket
