@@ -6,6 +6,10 @@ const humidHelper = async (action, data) => {
     const deviceName = data.device;
     const value = data.value;
     const device = await Device.findOne({ name: deviceName });
+    if (!device) {
+        console.error(`Device not found: ${deviceName}`);
+        return;
+    }
     const sensorData = new SensorData({
         deviceName,
         device_id: device._id,

@@ -6,6 +6,10 @@ const airHelper = async (action, data) => {
     const deviceName = data.device;
     const value = data.value;
     const device = await Device.findOne({ name: deviceName });
+    if (!device) {
+        console.error(`Device not found: ${deviceName}`);
+        return;
+    }
     let sensorData = new SensorData({
         deviceName,
         device_id: device._id,
@@ -15,23 +19,28 @@ const airHelper = async (action, data) => {
     });
     switch (action) {
         case 'CO2':
-            sensorData = { ...sensorData, sensorType: 'co2', unit: 'ppm' };
+            sensorData.sensorType = 'co2';
+            sensorData.unit = 'ppm';
             await sensorData.save();
             break;
         case 'NH3':
-            sensorData = { ...sensorData, sensorType: 'nh3', unit: 'ppm' };
+            sensorData.sensorType = 'nh3';
+            sensorData.unit = 'ppm';
             await sensorData.save();
             break;
         case 'NOx':
-            sensorData = { ...sensorData, sensorType: 'nox', unit: 'µg/m³' };
+            sensorData.sensorType = 'nox';
+            sensorData.unit = 'µg/m³';
             await sensorData.save();
             break;
         case 'Alcohol':
-            sensorData = { ...sensorData, sensorType: 'alcohol', unit: 'ppm' };
+            sensorData.sensorType = 'alcohol';
+            sensorData.unit = 'ppm';
             await sensorData.save();
             break;
         case 'Benzene':
-            sensorData = { ...sensorData, sensorType: 'benzene', unit: 'ppm' };
+            sensorData.sensorType = 'benzene';
+            sensorData.unit = 'ppm';
             await sensorData.save();
             break;
         default:

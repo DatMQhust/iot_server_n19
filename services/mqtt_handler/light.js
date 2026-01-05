@@ -12,8 +12,14 @@ const lightHelper = async (action,data) => {
     if (lastStatus && lastStatus.number_value === value) {
         return;
     }
+    const device = await Device.findOne({ name: deviceName });
+    if (!device) {
+        console.error(`Device not found: ${deviceName}`);
+        return;
+    }
     const sensordata = new SensorData({
         deviceName,
+        device_id: device._id,
         sensorType: 'light',
         number_value: value,
         unit: '',

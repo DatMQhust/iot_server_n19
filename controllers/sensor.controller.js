@@ -2,21 +2,21 @@ const SensorData = require('../models/sensordata.model');
 const {getIO} = require('../services/socket.service');
 const Device = require('../models/device.model');
 const {getMQTTClient} = require('../services/mqtt.service');
-const getLatestSensorData = async (deviceName, sensorType) => {
-    return await SensorData.findOne({ deviceName, sensorType })
+const getLatestSensorData = async (deviceName) => {
+    return await SensorData.findOne({ deviceName })
         .sort({ createdAt: -1 })
         .select('number_value')
         .exec();
 };
-const getSensorDataHistory = async (deviceName, sensorType) => {
-    return await SensorData.find({ deviceName, sensorType })
+const getSensorDataHistory = async (deviceName) => {
+    return await SensorData.find({ deviceName })
         .sort({ createdAt: -1 }).limit(30)
         .exec();
 };
 
 const changeSensorStatus = async (deviceName, sensorType, value) => {
     const device = await Device.findOne({ name: deviceName });
-    const sensorData = await getLatestSensorData(deviceName, sensorType);
+    const sensorData = await getLatestSensorData(deviceName);
     
     if (sensorData && sensorData.number_value === value) {
         return;

@@ -16,6 +16,10 @@ const ledHelper = async (action, data) => {
         return;
     }
     const device = await Device.findOne({ name: deviceName });
+    if (!device) {
+        console.error(`Device not found: ${deviceName}`);
+        return;
+    }
     const sensordata = new SensorData({
         deviceName,
         device_id: device._id,
