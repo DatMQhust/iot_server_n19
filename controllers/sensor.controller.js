@@ -8,6 +8,11 @@ const getLatestSensorData = async (deviceName, sensorType) => {
         .select('number_value')
         .exec();
 };
+const getSensorDataHistory = async (deviceName, sensorType) => {
+    return await SensorData.find({ deviceName, sensorType })
+        .sort({ createdAt: -1 }).limit(30)
+        .exec();
+};
 
 const changeSensorStatus = async (deviceName, sensorType, value) => {
     const device = await Device.findOne({ name: deviceName });
@@ -48,4 +53,4 @@ const changeSensorStatus = async (deviceName, sensorType, value) => {
     return sensordata;
 };
 
-module.exports = { changeSensorStatus };
+module.exports = { changeSensorStatus, getSensorDataHistory, getLatestSensorData };
