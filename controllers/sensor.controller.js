@@ -2,14 +2,14 @@ const SensorData = require('../models/sensordata.model');
 const {getIO} = require('../services/socket.service');
 const Device = require('../models/device.model');
 const {getMQTTClient} = require('../services/mqtt.service');
-const getLatestSensorData = async (deviceName) => {
-    return await SensorData.findOne({ deviceName })
+const getLatestSensorData = async (deviceName, sensorType) => {
+    return await SensorData.findOne({ deviceName, sensorType })
         .sort({ createdAt: -1 })
         .select('number_value')
         .exec();
 };
-const getSensorDataHistory = async (deviceName) => {
-    return await SensorData.find({ deviceName })
+const getSensorDataHistory = async (deviceName, sensorType) => {
+    return await SensorData.find({ deviceName, sensorType })
         .sort({ createdAt: -1 }).limit(30)
         .exec();
 };

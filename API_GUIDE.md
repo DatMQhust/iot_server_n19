@@ -22,13 +22,13 @@ Sử dụng các cặp `deviceName` và `sensorType` sau:
 
 ### 1. Lấy dữ liệu cảm biến mới nhất
 - **Method:** `GET`
-- **Route:** `/sensor/get-latest/:deviceName`
-- **Ví dụ:** `GET /sensor/get-latest/cam_bien_nhiet_do`
+- **Route:** `/sensor/get-latest/:deviceName/:sensorType`
+- **Ví dụ:** `GET /sensor/get-latest/cam_bien_nhiet_do/temperature`
 
 ### 2. Lấy lịch sử dữ liệu
 - **Method:** `GET`
-- **Route:** `/sensor-data/history/:deviceName`
-- **Ví dụ:** `GET /sensor-data/history/air_quality`
+- **Route:** `/sensor-data/history/:deviceName/:sensorType`
+- **Ví dụ:** `GET /sensor-data/history/air_quality/co2`
 
 ### 3. Điều khiển thiết bị (Gửi lệnh)
 - **Method:** `POST`
