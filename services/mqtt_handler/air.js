@@ -3,7 +3,7 @@ const {getIO} = require('../socket.service');
 const Device = require('../../models/device.model');
 const SensorData = require('../../models/sensordata.model');
 const airHelper = async (action, data) => {
-    const deviceName = data.device;
+    const deviceName = 'air_quality';
     const value = data.value;
     const device = await Device.findOne({ name: deviceName });
     if (!device) {

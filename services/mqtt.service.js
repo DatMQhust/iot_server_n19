@@ -7,6 +7,7 @@ const { humidHelper } = require('./mqtt_handler/humid');
 const { airHelper } = require('./mqtt_handler/air');
 const { fanHelper } = require('./mqtt_handler/fan');
 const { pumpHelper } = require('./mqtt_handler/pump');
+const { servoHelper } = require('./mqtt_handler/servo');
 
 let mqttClient = null;
 
@@ -78,6 +79,9 @@ const connectMQTT = () => {
         break;
       case 'may_bom':
         pumpHelper(action, data);
+        break;
+      case 'cung_cap_thuc_an': 
+        servoHelper(action, data);
         break;
       default:
         
