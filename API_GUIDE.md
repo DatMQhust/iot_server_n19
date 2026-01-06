@@ -17,6 +17,7 @@ Sử dụng các cặp `deviceName` và `sensorType` sau:
 | `air_quality` | `co2`, `nh3`, `nox`, `alcohol`, `benzene` | Cảm biến chất lượng không khí |
 | `quat` | `fan` | Quạt |
 | `may_bom` | `pump` | Máy bơm |
+| `cung_cap_thuc_an` | `servo` | Cửa/Cung cấp thức ăn |
 
 ## Các API chính
 
