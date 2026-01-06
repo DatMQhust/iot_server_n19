@@ -48,7 +48,7 @@ const airHelper = async (action, data) => {
             return;
     }
     const io = getIO();
-    io.emit('air_quality', {
+    io.emit(sensorData.sensorType, {
         deviceName,
         sensorType: sensorData.sensorType,
         value,
