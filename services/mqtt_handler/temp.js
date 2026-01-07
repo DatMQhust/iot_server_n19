@@ -3,7 +3,7 @@ const {getIO} = require('../socket.service');
 const Device = require('../../models/device.model');
 const SensorData = require('../../models/sensordata.model');
 const { checkTemperatureAlert } = require('../../controllers/alert.controller');
-const ALERT_COOLDOWN = 15 * 60 * 1000;
+const ALERT_COOLDOWN = 3 * 60 * 1000;
 const temperatureHelper = async (action, data) => {
     const deviceName = data.device;
     const sensorType = 'temperature';
